@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Turn messy project notes into a clear, reviewable decision brief." />
+    <title>Decision Lens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <nav>
+        <a href="./" class="brand"><span class="brand-mark">DL</span> Decision Lens</a>
+        <span class="experiment">A transparent prototype by vaidveena</span>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">FROM AMBIGUITY TO ALIGNMENT</p>
+          <h1>Make the decision<br /><em>visible.</em></h1>
+        </div>
+        <p class="hero-copy">Turn scattered project notes into a decision brief your team can review, challenge, and act on.</p>
+      </header>
+
+      <main class="workspace">
+        <section class="input-panel panel">
+          <div class="panel-heading">
+            <div><span class="step">01</span><h2>Add your context</h2></div>
+            <button id="load-example" class="text-button" type="button">Load example</button>
+          </div>
+          <p class="helper">Include the decision, options, constraints, risks, owner, and deadline. Rough notes are welcome.</p>
+          <form id="notes-form">
+            <label for="notes" class="sr-only">Project decision notes</label>
+            <textarea id="notes" name="notes" rows="18" required placeholder="Decision: Should we launch to all customers or run a limited pilot?&#10;&#10;Context: The launch date is fixed…&#10;Options:&#10;- Launch broadly&#10;- Pilot with 10 customers&#10;&#10;Owner: Product lead&#10;Deadline: October 18"></textarea>
+            <div class="input-footer">
+              <span id="character-count">0 characters</span>
+              <button type="submit" class="primary-button">Generate brief <span>→</span></button>
+            </div>
+          </form>
+          <aside class="simulation-note">
+            <strong>Simulated analysis</strong>
+            <p>This MVP uses transparent browser rules—not an AI model. It demonstrates the product workflow without collecting data or requiring an API key.</p>
+          </aside>
+        </section>
+
+        <section class="output-panel panel" id="output-panel">
+          <div id="empty-state" class="empty-state">
+            <div class="lens-graphic" aria-hidden="true"><span></span><i></i></div>
+            <p class="eyebrow">YOUR BRIEF WILL APPEAR HERE</p>
+            <h2>A shared decision starts with shared context.</h2>
+            <p>Add your notes, then generate a structured brief. Every field remains editable.</p>
+          </div>
+
+          <div id="brief" class="brief is-hidden">
+            <div class="panel-heading brief-heading">
+              <div><span class="step">02</span><h2>Review the brief</h2></div>
+              <span class="status-pill">Draft · simulated</span>
+            </div>
+
+            <label class="brief-field decision-field">
+              <span>Decision to make</span>
+              <textarea id="decision" rows="2"></textarea>
+            </label>
+
+            <div class="brief-field">
+              <span>Context</span>
+              <textarea id="context" rows="4"></textarea>
+            </div>
+
+            <div class="brief-field">
+              <div class="field-title"><span>Options and tradeoffs</span><button id="add-option" type="button">+ Add option</button></div>
+              <div id="options" class="option-list"></div>
+            </div>
+
+            <div class="brief-field recommendation-field">
+              <span>Working recommendation</span>
+              <textarea id="recommendation" rows="3"></textarea>
+            </div>
+
+            <div class="two-column">
+              <label class="brief-field"><span>Risks & assumptions</span><textarea id="risks" rows="5"></textarea></label>
+              <div class="brief-field metadata-fields">
+                <label><span>Owner</span><input id="owner" /></label>
+                <label><span>Decision deadline</span><input id="deadline" /></label>
+              </div>
+            </div>
+
+            <div class="brief-actions">
+              <button id="start-over" class="secondary-button" type="button">Start over</button>
+              <button id="copy-markdown" class="secondary-button" type="button">Copy Markdown</button>
+              <button id="export-markdown" class="primary-button" type="button">Export .md</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <section class="principles">
+        <article><span>01</span><h3>Evidence over polish</h3><p>Keep facts, assumptions, and recommendations distinguishable.</p></article>
+        <article><span>02</span><h3>Tradeoffs over theater</h3><p>Show what each option gains, costs, and leaves unresolved.</p></article>
+        <article><span>03</span><h3>Ownership over ambiguity</h3><p>Finish with one accountable owner and a real decision date.</p></article>
+      </section>
+
+      <footer><span>Decision Lens · Prototype thoughtfully.</span><a href="https://github.com/vaidveena/decision-lens">Source on GitHub ↗</a></footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
